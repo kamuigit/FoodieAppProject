@@ -1,0 +1,67 @@
+#heading {
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  margin-left: 100px;
+  text-align: left;
+  word-spacing: 10px;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+#recipt {
+  width: var(--wid);
+  height: var(--high);
+  align-items: var(--ali);
+}
+
+table,
+th,
+td {
+  border: 2px solid grey;
+  border-collapse: collapse;
+  padding: 20px;
+  text-align: center;
+  font-size: 15px;
+}
+.card-text {
+  padding: 8px;
+  font-size: 15px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .card {
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+  }
+
+  th,
+  td {
+    font-size: 12px;
+    padding: 5px;
+  }
+}
+
+@media screen and (min-width: 260px) {
+  .card {
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+  }
+
+  th,
+  td {
+    font-size: 12px;
+    padding: 4px;
+  }
+}

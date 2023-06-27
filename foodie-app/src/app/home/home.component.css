@@ -1,0 +1,146 @@
+#homebox {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    var(--var);
+  background-size: cover;
+  background-repeat: 0;
+  height: 80%;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+body {
+  background-color: rgb(14, 6, 22);
+}
+
+#title-text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: #fff;
+  padding: 10px 20px;
+  z-index: 1;
+  font-style: oblique;
+}
+#sub-title {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  z-index: 1;
+}
+
+.footer {
+  background-color: rgb(226, 219, 219);
+  padding: 30px 0;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-column {
+  margin-right: 30px;
+}
+
+.footer-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.app-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.app-link {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-icon {
+  display: inline-block;
+  color: #666;
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.footer-text {
+  margin-top: 10px;
+}
+
+#heading {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  word-spacing: 10px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-top: 2px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 300px;
+  margin: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+}
+.img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-top: 15px;
+  margin-left: 950px;
+}
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+  #sub-title {
+    font-size: 15px;
+  }
+}

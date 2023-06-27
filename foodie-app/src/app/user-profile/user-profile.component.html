@@ -1,0 +1,131 @@
+<div class="profile-container">
+  <button mat-icon-button (click)="goBack()" class="back-button">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <div class="card">
+
+    <div class="card-header">
+      <h2>User Profile</h2>
+    </div>
+    <div class="card-body">
+      <div class="d-flex justify-content-evenly">
+        <img [src]="userdata?.image" alt="" class="profile-img" *ngIf="!editMode">
+      </div>
+      <form [formGroup]="profileForm" class="profile-form">
+        <div *ngIf="editMode" class="d-flex justify-content-evenly">
+          <img width="100" height="100" class="margin-top mat-elevation-z1" [src]="imgUrl">
+          <button mat-button color="basic" style="display: inline;" (click)="inputImage.click()" type="button">
+            Choose image
+          </button>
+          <input hidden #inputImage type="file" (change)="uploadfile($event)" formControlName="image">
+        </div>
+
+        <mat-form-field class="profile-field">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" [readonly]="!editMode" pattern="^[a-zA-Z]+$" minlength="4"
+            required>
+          <mat-error *ngIf="firstName?.errors?.['pattern']" class="error" style="color: red;">
+            First Name should have characters only
+          </mat-error>
+          <mat-hint *ngIf="firstName?.errors?.['minlength']" class="error" style="color: red;">
+            FirstName should have minimum 4 characters
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" [readonly]="!editMode" pattern="^[a-zA-Z]+$" minlength="4"
+            required>
+          <mat-error *ngIf="lastName?.errors?.['pattern']" class="error" style="color: red;">
+            last Name should have characters only
+          </mat-error>
+          <mat-hint *ngIf="lastName?.errors?.['minlength']" class="error" style="color: red;">
+            lastName should have minimum 4 characters
+          </mat-hint>
+        </mat-form-field>
+
+        <!-- <mat-form-field class="profile-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" [readonly]="!editMode">
+        </mat-form-field> -->
+
+        <mat-form-field class="profile-field">
+          <mat-label>Age:</mat-label>
+          <input matInput formControlName="age" type="number" [readonly]="!editMode" required>
+          <mat-error *ngIf="age?.errors?.['required']" class="error" style="color: red;">
+            Age is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Phone No</mat-label>
+          <input matInput formControlName="phoneNo" type="text" [readonly]="!editMode" pattern="^[789]\d{9,9}$"
+            required>
+          <mat-error *ngIf="phoneNo?.errors?.['pattern']" class="error" style="color: red;">
+            Phone Number should have 10 digits and should start with 7, 8, or 9 & must not contain alphabets
+          </mat-error>
+          <!-- <mat-error class="error" *ngIf="age?.errors?.['ageCheck']">​
+          Age must be 18 years and above
+      </mat-error> -->
+        </mat-form-field>
+
+        <p><strong>Address:</strong></p>
+
+        <mat-form-field class="profile-field">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" [readonly]="!editMode" pattern="^[a-zA-Z]+$" minlength="4" required>
+          <mat-error *ngIf="city?.errors?.['pattern']" class="error" style="color: red;">
+            City should have characters only
+          </mat-error>
+          <mat-hint *ngIf="city?.errors?.['minlength']" class="error" style="color: red;">
+            City should have atleast 4 characters
+          </mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field class="profile-field">
+          <mat-label>Street</mat-label>
+          <input matInput formControlName="street" [readonly]="!editMode" pattern="[^!@#$%^&*()_+=-]+$" minlength="4"
+            required>
+          <mat-error *ngIf="street?.errors?.['pattern']" class="error" style="color: red;">
+            Street should not have special characters
+          </mat-error>
+          <mat-hint *ngIf="street?.errors?.['minlength']" class="error" style="color: red;">
+            Street should have atleast 4 characters
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>House No</mat-label>
+          <input matInput formControlName="houseNo" [readonly]="!editMode" pattern="^[0-9]+$" required>
+          <mat-error *ngIf="houseNo?.invalid && houseNo?.errors && houseNo?.errors?.['pattern']">Please enter numbers
+            only.</mat-error>
+          <mat-hint *ngIf="houseNo?.errors?.['required']" class="error" style="color: red;">
+            houseNo is required
+          </mat-hint>
+
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Pincode</mat-label>
+          <input matInput formControlName="pinCode" [readonly]="!editMode" pattern="^[0-9]+$" required>
+          <mat-error *ngIf="pinCode?.invalid && pinCode?.errors">Please enter numbers only.</mat-error>
+          <mat-hint *ngIf="pinCode?.errors?.['required']" class="error" style="color: red;">
+            Pincode is required
+          </mat-hint>
+        </mat-form-field>
+
+
+        <div class="d-flex justify-content-evenly">
+          <button mat-raised-button color="primary" (click)="editProfile()" type="button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-raised-button color="primary" (click)="saveUpdate()" type="button" *ngIf="editMode">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<!-- <div><button (click) = "back()">Back</button></div> -->
+<div><button (click) = "back()">Back</button></div>
+<div class="card mx-auto">
+  <div style="text-align: center;"><h2>Form</h2></div>
+  <form [formGroup]="formdata" (ngSubmit)="onSubmit()" class="a">
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" class="form-control" id="city" formControlName="city">
+    </div>
+    <div formGroupName="restaurantList">
+      <div>
+        <label for="restaurantName">Restaurant Name:</label>
+        <input type="text" class="form-control" formControlName="resName">
+      </div>
+      
+      <div>
+        <label for="restaurantImage">Restaurant Image:</label>
+        <input type="url" class="form-control" formControlName="resImage">
+      </div>
+      <div formGroupName="menu">
+        <div>
+          <label for="category">Category:</label>
+          <input type="text" class="form-control" formControlName="category">
+        </div>
+        <div>
+          <label for="menuImage">Menu Image:</label>
+          <input type="url" class="form-control" formControlName="menuImage">
+        </div>
+        <div>
+          <label for="itemName">ItemName:</label>
+          <input type="url" class="form-control" formControlName="itemName">
+        </div>
+       
+        <div>
+          <label for="menuId">MenuId:</label>
+          <input type="text" class="form-control" formControlName="menuId">
+        </div>
+      
+        <div>
+          <label for="price">Price:</label>
+          <input type="text" class="form-control" formControlName="price">
+        </div>
+        <div>
+          <label for="qty">Quantity:</label>
+          <input type="text" class="form-control" formControlName="qty">
+        </div>
+        <div>
+          <label for="menuResCity">Restaurant City:</label>
+          <input type="text" class="form-control" formControlName="menuresCity">
+        </div>
+        <div class="form-group">
+          <label for="menuResName">Restaurant Name:</label>
+          <input type="text" class="form-control" formControlName="menuResName">
+        </div>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="formdata.invalid">Submit</button>
+  </form>
+</div>

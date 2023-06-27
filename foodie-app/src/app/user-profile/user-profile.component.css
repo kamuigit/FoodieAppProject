@@ -1,0 +1,56 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  width: 40vw;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+.card-header {
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field {
+  margin-bottom: 20px;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .card {
+    width: 100%;
+    border-radius: 0;
+  }
+}

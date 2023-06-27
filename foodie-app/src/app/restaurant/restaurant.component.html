@@ -1,0 +1,22 @@
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div class="container mt-5">
+  <h1 id="heading">Restaurants in {{city}}</h1>
+  <app-restaurant-search (searchTextChanged)="onSearchTextChanged($event)"></app-restaurant-search>
+
+  <div class="row">
+
+    <div class="col" *ngFor="let a of restaurantdata ">
+      <div class="card ">
+        <img src="{{a.image}}" alt="Image 1" class="card-image" (click)="goToMenu(a)"  style="height: 10rem;">
+        <h3 class="card-title">{{a.resName | titlecase }} </h3>
+        <button mat-button color="warn" (click)="addResturantToFav(a)" *ngIf="isLoggedIn">
+          <mat-icon>{{ isFavorite(a) ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,19 @@
+
+
+.menudetails {
+  padding: 20px;
+  margin-left: 20px;
+}
+
+.counter {
+  width: 180px;
+}
+.counter input {
+  text-align: center;
+  width: 30px;
+}
+
+#empty-cart{
+  padding: 20px;
+
+}

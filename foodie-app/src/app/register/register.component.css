@@ -1,0 +1,39 @@
+#box {
+  /* border: solid 1px chartreuse; */
+  display: flex;
+  margin-left: 30%;
+  height: 50%;
+  width: 50%;
+  color: white;
+  margin-left: 10px;
+}
+
+.text-container {
+  background-color: aliceblue;
+}
+
+h1 {
+  font-weight: 700;
+  color: crimson;
+}
+
+.profile-image {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  width: max-content;
+}
+
+.profile-image img {
+  margin-top: 10px;
+}
+
+.profile-image button {
+  margin-top: 10px;
+}
+.error {
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 12px;
+  color: red;
+}

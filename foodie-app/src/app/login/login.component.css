@@ -1,0 +1,49 @@
+.container {
+  z-index: 5;
+  position: absolute;
+}
+
+#box {
+  margin-top: 100px;
+  padding-bottom: 30px;
+  z-index: 0;
+  display: flex;
+  margin-left: 80px;
+  margin-right: auto;
+  color: white;
+
+  padding-right: auto;
+}
+
+.profile img {
+  margin-left: 420px;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  background-size: 80% 80%;
+  background-position: 120%;
+}
+
+h1 {
+  font-weight: 700;
+  color: crimson;
+}
+.error {
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 12px;
+  color: red;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  body {
+    background-size: contain;
+  }
+}
+
+@media (min-width: 480px) {
+  body {
+    background-size: auto;
+  }
+}

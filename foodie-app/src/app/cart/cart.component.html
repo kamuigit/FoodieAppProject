@@ -1,0 +1,202 @@
+<button mat-icon-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+</button>
+<div *ngIf="!cartList || cartList.length ==0" class="d-flex justify-content-center">
+    <div class="d-block">
+        <img src="https://cdn3.iconfinder.com/data/icons/shopping-and-ecommerce-28/90/empty_cart-512.png"
+            style="height: 38vh;" alt="">
+        <h1 class="text-center">OOps ! Your Cart Is Currently Empty !</h1>
+        <div class="text-center mt-1 p-0">
+            <button mat-raised-button color="accent" id="empty-cart" routerLink="/home"> Browse Restaurants </button>
+        </div>
+    </div>
+
+</div>
+<section class="h-100 gradient-custom">
+    <div class="container py-5" *ngIf="cartList.length !=0">
+
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h2 class="mb-0">Cart - {{cartList.length}} items</h2>
+                    </div>
+
+                    <div class="card-body" *ngFor="let i of cartList; let j=index">
+                        <!-- Single item -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                <!-- Image -->
+                                <div class="bg-image hover-overlay hover-zoom ripple rounded"
+                                    data-mdb-ripple-color="light">
+                                    <img src="{{i.image}}" style="height: 100px;
+                                width: 100px;" alt="Blue Jeans Jacket" />
+                                    <a href="#!">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                    </a>
+                                </div>
+                                <!-- Image -->
+                            </div>
+
+                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                <!-- Data -->
+                                <p><strong> {{i.itemName}}</strong></p>
+                                <!-- <p>{{i.resCity}}</p> -->
+                                <p>
+                                    category :
+                                    <span *ngIf="i.category == 'veg'"><img
+                                            src="https://n3.sdlcdn.com/imgs/d/g/8/Veg_symbol_svg-f30b6.png" alt=""
+                                            style="width: 20px; height: 20px;"></span>
+                                    <span *ngIf="i.category == 'Non-veg'"><img
+                                            src=" https://packagingguruji.com/wp-content/uploads/2022/09/New-Non-Logo.png"
+                                            alt="" style="width: 30px; height: 30px;"></span>
+                                    {{i.category}}
+                                </p>
+
+                                <p>Restaurant : {{i.resName}}</p>
+                                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                                    title="Remove item" (click)="deleteItem(i)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm ms-2 mb-2" data-mdb-toggle="tooltip"
+                                    title="Move to the wish list" (click)="addMenuToFav(i)">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <!-- Data -->
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <!-- Quantity -->
+                                <div class="d-flex mb-4" style="max-width: 300px ; max-height: 300px;">
+                                    <button class="btn btn-primary px-3 me-2" (click)="minus(j)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                    <div class="form-outline">
+                                        <input id="form1" min="1" name="quantity" value="{{i.qty}}" type="number"
+                                            class="form-control" />
+                                        <label class="form-label" for="form1">Quantity</label>
+                                    </div>
+
+                                    <button class="btn btn-primary px-3 ms-2"
+                                        style="max-width: 300px ; max-height: 300px;" (click)="plus(j)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <!-- Quantity -->
+
+                                <!-- Price -->
+                                <p class="text-start text-md-center">
+                                    <strong>₹ {{i.price}}</strong>
+                                </p>
+                                <!-- Price -->
+                            </div>
+                        </div>
+                        <!-- Single item -->
+
+                        <hr class="my-4" />
+
+                        <!-- Single item -->
+
+                        <!-- Single item -->
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p><strong>Delivery Address : </strong></p>
+                        <section class="my-1 mx-1">
+                            <mat-checkbox class="example-margin" [checked]="check"
+                                (change)="check=!check ;registeredAddress(check)">Current
+                                Address</mat-checkbox>
+                            <mat-checkbox class="example-margin" [checked]="!check"
+                                (change)="check=!check;registeredAddress(check)">Home
+                                Address</mat-checkbox>
+
+                        </section>
+                        <form [formGroup]="address" style="width: 50%;" class="ms-4">
+                            <div class="my-2">
+                                <label for="street"><strong> Street </strong></label>
+                                <textarea type="textarea" cols=15 class="form-control" id="street"
+                                    formControlName="street" minlength="10" [readOnly]="!check"
+                                    pattern="[^!@#$%^&*()_+=-]+$" minlength="4" required></textarea>
+                                <!-- <div *ngIf="street?.errors?.['pattern']" class="error" style="color: red;">
+                                    Street should not have special characters
+                                </div>
+                                <div *ngIf="street?.errors?.['minlength']" class="error" style="color: red;">
+                                    Street should have atleast 4 characters
+                                </div> -->
+                            </div>
+
+                            <div class="my-2 row">
+
+                                <div class="col">
+                                    <label for="houseNo"><strong> HouseNo </strong></label>
+                                    <input type="text" class="form-control" id="houseNo" formControlName="houseNo"
+                                        minlength="1" [readOnly]="!check" pattern="^[0-9]+$">
+                                    <!-- <div *ngIf="houseNo?.errors?.['pattern'] && houseNo?.touched" style="color: red;">
+                                        Please enter
+                                        numbers only.</div> -->
+                                </div>
+                                <div class="col">
+                                    <label for="city"><strong> City </strong></label>
+                                    <input type="text" class="form-control" id="city" formControlName="city"
+                                        minlength="5" [readOnly]="!check" pattern="^[a-zA-Z]+$">
+                                    <!-- <div *ngIf="city?.errors?.['pattern']" class="error" style="color: red;">
+                                        City should have characters only
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <label for="pinCode"><strong> PinCode </strong></label>
+                                <input type="text" class="form-control" id="pinCode" formControlName="pinCode"
+                                    minlength="5" [readOnly]="!check" pattern="^[0-9]+$">
+                                <!-- <div *ngIf="pinCode?.errors?.['pattern']" style="color: red;">Please
+                                    enter
+                                    numbers only.</div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Restaurant Bill : </h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                Products
+                                <span>₹ {{amount}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                No Of items
+                                <span>{{cartList.length}}</span>
+                            </li>
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                <div>
+                                    <strong>Total amount</strong>
+                                    <strong>
+                                        <p class="mb-0">(including VAT)</p>
+                                    </strong>
+                                </div>
+                                <span><strong> ₹ {{amount}}</strong></span>
+                            </li>
+                        </ul>
+                        <button mat-raised-button color="accent" (click)="checker()" [disabled]="!comfirmOrder">
+                            Pay Online
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

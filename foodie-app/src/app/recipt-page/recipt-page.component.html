@@ -1,0 +1,50 @@
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<h2 id="heading">Order Recipt :</h2>
+<div>
+  <h2 *ngIf="!orderList" class="text-center">No Data available, user has to login</h2>
+  <div class="card mt-2 p-4" style="width: 50%;" id="recipt" #recipt>
+      <p class="card-title">Order ID : {{orderList.orderId}}</p>
+      <p class="fw-bold">Restaurant Bill</p>
+      <p class="card-text">Date Of Order : {{orderList.dateOfOrder |date}}</p>
+      <p class="card-text">Time Of Order : {{orderList.timeOfOrder}}</p>
+      <p class="card-text">Delivery Address : No.{{orderList.houseNo}}, {{orderList.address.street}} ,
+          {{orderList.address.city}} :
+          {{orderList.address.pinCode}}</p>
+      <div>
+          <h3 class="fw-bold"> List Of Order Items</h3>
+      </div>
+      <div>
+          <table style="overflow-x: auto;">
+              <thead>
+                  <th>sl.no</th>
+                  <th>Item Name</th>
+                  <th>Category</th>
+                  <th>Item Price</th>
+                  <th>Quantity</th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let a of orderList.menu; index as i; " style="overflow-x: auto;">
+                      <td>{{i+1}}</td>
+                      <td>{{a.itemName}}</td>
+                      <td>{{a.category}}</td>
+                      <td>{{a.price}}</td>
+                      <td>{{a.qty}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div class="p-3 mt-3">
+          Total Amount : &nbsp;&nbsp;&nbsp;&nbsp;Rs. {{orderList.amount}}
+      </div>
+  </div>
+  <div class="d-flex flex-column mt-2 justify-content-left align-items-center text-center">
+      To Download Recipt copy click below
+
+      <button class="btn btn-danger mt-2" (click)="generatePdf()"><i class="fa-sharp fa-solid fa-file-pdf"></i>
+          Download</button>
+  </div>
+
+</div>

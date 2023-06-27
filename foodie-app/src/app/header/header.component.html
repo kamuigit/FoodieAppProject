@@ -1,0 +1,38 @@
+<mat-toolbar style="height: 9%; background-color: #333; color: azure;">
+  <button mat-icon-button class="example-icon" (click)="openSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img src="https://myfoodie.world/wp-content/uploads/2018/08/foodie_Logo_pos.png" alt=""
+    style="width: 150px;height: auto; margin-left: 5px;" routerLink="/home">
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button class="material-icons" *ngIf="isLoggedIn" routerLink="/home">
+    <mat-icon>home</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon favorite-icon" (click)="goToFav()" *ngIf="isLoggedIn">
+    <mat-icon>favorite-icon</mat-icon>
+  </button>
+  <button mat-icon-button routerLink="/cart" *ngIf="isLoggedIn">
+    <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+    <span *ngIf="totalItem > 0" style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</span>
+  </button>
+  <span class="m-1"></span>
+  <button mat-icon-button class="example-icon" *ngIf="!isLoggedIn1" routerLink="/login">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <button mat-icon-button class="material-icons" (click)="logout()" *ngIf="isLoggedIn1">
+    <mat-icon>logout</mat-icon>
+  </button>
+
+
+  <div class="img1" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu">
+    <img src="{{userdata?.image}}" alt="" class="img">
+    <h2 style="color: white;float: right;padding-top: 20px; margin-left: 10px;">{{userdata?.firstName |titlecase}}
+      {{userdata?.lastName |titlecase}}</h2>
+
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="navigate()">Go To Profile</button>
+    <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> LogOut</button>
+  </mat-menu>
+</mat-toolbar>

@@ -1,0 +1,40 @@
+.search-bar {
+  max-width: 500px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  animation:  appear 1s 1 ;
+}
+
+
+input {
+  width: 220px;
+  margin: auto;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 20px;
+  background-color: transparent;
+  flex: 1;
+  color: white;
+  font-size: 1.2rem;
+}
+
+input:focus{
+  outline-offset: 0px;
+  outline: none;
+}
+
+input::placeholder{
+  color: white;
+}
+
+button {
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 20px;
+  color: white;
+}

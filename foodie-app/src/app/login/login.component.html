@@ -1,0 +1,37 @@
+<body
+    style="background-image:url('/assets/bg-4.jpg'); background-repeat: no-repeat; background-size: cover; overflow: auto;">
+    <div class="container pt-5 ">
+        <div id="box">
+            <div class="col-md-4 p-2">
+                <div class="text-container">
+                    <h1>LOG IN</h1>
+                </div>
+                <form [formGroup]="registrationDetails" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email">
+                        <div *ngIf="email?.touched && email?.invalid">
+                            <div *ngIf="email?.errors?.['required']" class="error">
+                                Email is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password">
+                        <div *ngIf="password?.touched && password?.invalid">
+                            <div *ngIf="password?.errors?.['required']" class="error">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div>
+                        <a routerLink="/register">New user.Click to signup!!</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

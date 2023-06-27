@@ -1,0 +1,55 @@
+
+
+<body class="bg-img">
+  <button mat-icon-button-white (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+<div style="padding-top: 130px;">
+  <div style="text-align: center;" style="color: white;">
+    <h2>Add Menu To Restaurant : {{resName}} </h2>
+  </div>
+  <div class="card">
+    
+    <form [formGroup]="formdata" (ngSubmit)="onSubmit()" class="a">
+      <div>
+        <label for="menuId">MenuId:</label>
+        <input type="number" class="form-control" formControlName="menuId">
+      </div>
+
+      <div>
+        <label for="itemName">ItemName:</label>
+        <input type="url" class="form-control" formControlName="itemName">
+      </div>
+      <div>
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" formControlName="category">
+      </div>
+
+      <div>
+        <label for="price">Price(in &#8377;):</label>
+        <input type="number" class="form-control" formControlName="price">
+      </div>
+      <!-- <div>
+        <label for="qty">Quantity:</label>
+        <input type="number" class="form-control" formControlName="qty">
+      </div> -->
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label"> </label>
+        <input class="form-control" type="file" id="formFile" (change)="uploadfile($event)"
+            formControlName="image">
+     </div>
+      <!-- <div>
+        <label for="menuResName">Restaurant Name:</label>
+        <input type="text" class="form-control" formControlName="resName">
+      </div>
+      <div>
+        <label for="menuResCity">Restaurant City:</label>
+        <input type="text" class="form-control" formControlName="resCity">
+      </div> -->
+      <br>
+      <button type="submit" class="btn btn-primary" [disabled]="formdata.invalid">Submit</button>
+    </form>
+  </div>
+</div>
+</body>

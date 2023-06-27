@@ -1,0 +1,26 @@
+
+<body class="bg-img" >
+  <button mat-icon-button-white (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+<div style="padding-top: 130px;">
+    <div class="card ">
+      <div style="text-align: center;"><h2>Add Restaurant to {{city}}</h2></div>
+      <form [formGroup]="formdata" (ngSubmit)="onSubmit()" class="a">
+          <div>
+            <label for="restaurantName">Restaurant Name:</label>
+            <input type="text" class="form-control" formControlName="resName">
+          </div>
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label"> </label>
+            <input class="form-control" type="file" id="formFile" (change)="uploadfile($event)"
+                formControlName="image">
+         </div>
+          <br>
+        <button type="submit" class="btn btn-primary" [disabled]="formdata.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>

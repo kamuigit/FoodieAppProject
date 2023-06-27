@@ -1,0 +1,9 @@
+<div class="search-bar">
+  <input matInput type="text" placeholder="Search" name="searchValue" [(ngModel)]="searchValue">
+  <button mat-icon-button matSuffix (click)="searchRestaurant()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+  <button mat-icon-button matSuffix (click)="clearSearch()">
+      <i class="fa-solid fa-delete-left"></i>
+  </button>
+</div>

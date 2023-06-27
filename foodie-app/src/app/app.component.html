@@ -1,0 +1,28 @@
+<app-header (SideNavToggle)="sidenav.toggle()"></app-header>
+
+
+<mat-sidenav-container style="height:91%;width: 100%;">
+  <mat-sidenav #sidenav style="width: 18%;background-color: white;">
+    <mat-list>
+      <mat-list-item routerLink="/home" (click)="sidenav.close()">
+        <mat-icon matListIcon>home</mat-icon>&nbsp;&nbsp;&nbsp; Home
+      </mat-list-item>
+      <mat-list-item routerLink="/login" (click)="sidenav.close()">
+        <mat-icon matListIcon>person</mat-icon>&nbsp;&nbsp;&nbsp; Login
+      </mat-list-item>
+      <mat-list-item routerLink="/register" (click)="sidenav.close()">
+        <mat-icon matListIcon>person_add</mat-icon>&nbsp;&nbsp;&nbsp; Register
+      </mat-list-item>
+      <mat-list-item routerLink="/myOrders" *ngIf="isLoggedIn" (click)="sidenav.close()">
+        <mat-icon matListIcon>book</mat-icon>&nbsp;&nbsp;&nbsp; My Orders
+      </mat-list-item>
+      <mat-list-item routerLink="/add-items" *ngIf="isLogIn" (click)="sidenav.close()">
+        <mat-icon matListIcon>book</mat-icon>&nbsp;&nbsp;&nbsp; Edit Data
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

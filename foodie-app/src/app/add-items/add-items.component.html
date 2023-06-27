@@ -1,0 +1,29 @@
+
+<body class="bg-img">
+<div>
+  <h1>For Vendor</h1>
+</div>
+<div style="padding-top: 130px;">
+  <div class="card ">
+    <div style="text-align: center;"><h2>Add City Form</h2></div>
+    <form [formGroup]="formdata" (ngSubmit)="onSubmit()" class="a">
+      <div>
+        <label for="city">City:</label>
+        <input type="text" class="form-control" id="city" formControlName="city">
+      </div>
+      <!-- <div>
+        <label for="image">Image:</label>
+        <input type="url" class="form-control" id="image" formControlName="image">
+      </div> -->
+          <div class="mb-3">
+            <label for="formFile" class="form-label"> </label>
+            <input class="form-control" type="file" id="formFile" (change)="uploadfile($event)"
+                formControlName="image">
+          </div>
+      <br>
+      <button type="submit" class="btn btn-primary" [disabled]="formdata.invalid">Submit</button>
+      <button (click) = "next()"class="button2" style="margin-left: 30px;"><i class="fa-solid fa-arrow-right"></i></button>
+    </form>
+  </div>
+</div>
+</body>

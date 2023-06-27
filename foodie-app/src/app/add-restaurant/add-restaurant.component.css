@@ -1,0 +1,19 @@
+.bg-img{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  background-image: url("https://th.bing.com/th/id/OIP.EMx74OjbH0Ql2eOH3rLv4QHaE7?pid=ImgDet&rs=1");
+
+  opacity: 1;
+}
+.card{
+    width: 300px;
+    margin-left: 100px;
+    background-color: black;
+
+    color: white;
+}
+.a{
+    padding: 20px;
+}

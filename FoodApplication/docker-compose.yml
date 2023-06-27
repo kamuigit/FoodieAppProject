@@ -1,0 +1,97 @@
+version: "3.9"
+services:
+  mysql-service:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    container_name: mysql-container
+    networks:
+      - user-network
+    environment:
+      MYSQL_ROOT_PASSWORD: pass@123
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: pass@123
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  mongodb-service:
+    image: mongo:latest
+    container_name: mongo-container
+    networks:
+      - user-network
+    ports:
+      - "27017:27017"
+
+  user-authentication-service:
+    container_name: user-authentication-service
+    build: AuthApp/
+    networks:
+      - user-network
+    ports:
+      - "8085:8085"
+    depends_on:
+      - mysql-service
+    restart: always
+
+  favourite-service:
+    container_name: favourite-service
+    build: FavouriteService/
+    networks:
+      - user-network
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mongodb-service
+    restart: always
+
+  foodie-service:
+    container_name: foodie-service
+    build: FavouriteService/
+    networks:
+      - user-network
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb-service
+    restart: always
+
+  order-service:
+    container_name: order-service
+    build: OrderService/
+    networks:
+      - user-network
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb-service
+    restart: always
+
+  notification-service:
+    container_name: notification-service
+    build: Notification-Service/
+    networks:
+      - user-network
+    ports:
+      - "9190:9190"
+    depends_on:
+      - mongodb-service
+    restart: always
+
+  api-gateway:
+    container_name: gateway-container
+    build: ApiGateway/
+    networks:
+      - user-network
+    ports:
+      - "65001:65001"
+
+  eureka-server:
+    container_name: eureka-container
+    build: EurekaServer/
+    networks:
+      - user-network
+    ports:
+      - "8761:8761"
+
+networks:
+  user-network:
+    driver: bridge
+

@@ -1,0 +1,40 @@
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div class="container mt-5">
+  <h1 id="heading">Menu</h1>
+  <app-restaurant-search (searchTextChanged)="onSearchTextChanged($event)"></app-restaurant-search>
+
+  <div class="card-container">
+    <div class="card" *ngFor="let a of menudata">
+      <img src="{{a.image}}" alt="Menu Image" class="card-image" style="height: 12rem;">
+      <div class="card-body">
+        <div class="card-title-row">
+          <h5 class="card-title">{{a.itemName}}</h5>
+          <span class="card-rating">{{a.rating}}★</span>
+        </div>
+        <p>
+          <span *ngIf="a.category == 'veg'"><img src="https://n3.sdlcdn.com/imgs/d/g/8/Veg_symbol_svg-f30b6.png" alt=""
+              style="width: 20px; height: 20px;"></span>
+          <span *ngIf="a.category == 'Non-veg'"><img
+              src="https://packagingguruji.com/wp-content/uploads/2022/09/New-Non-Logo.png" alt=""
+              style="width: 30px; height: 30px;"></span>
+          {{a.category}}
+        </p>
+        <p class="card-price">&#8377;{{a.price}}</p>
+        <div class="card-buttons" *ngIf="isLoggedIn">
+          <button mat-icon-button color="warn" (click)="addMenuToFav(a)">
+            <mat-icon *ngIf="isFavorite(a)">favorite</mat-icon>
+            <mat-icon *ngIf="!isFavorite(a)">favorite_border</mat-icon>
+          </button>
+
+          <button class="btn btn-primary" (click)="addToCart(a)">
+            <i class="fas fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer *ngIf="menudata"></app-footer>

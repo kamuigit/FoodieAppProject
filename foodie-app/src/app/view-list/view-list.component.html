@@ -1,0 +1,95 @@
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<table class="table" style="overflow-x: auto;">
+  <thead>
+    <tr>
+      <th>Sr.No</th>
+      <th>City Details</th>
+      <th>Restaurant Details </th>
+      <th>Menu details</th>
+      <th>Delete city</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let city of cityList  ,let j =index">
+      <td>{{j+1}}</td>
+      <td>
+        <div class="card mx-1 d-flex" style="width: 16rem; text-align: center;">
+          <img [src]="city.image" class="card-img-top" alt="..." style="height: 10rem;">
+          <h2 class="my-2 mx-2">{{city.city |titlecase}} </h2>
+          <button class="btn btn-secondary" (click)="navigateres(city.city)"><i class="fa-solid fa-plus"></i>
+            Restaurant</button>
+        </div>
+      </td>
+      <td [colSpan]="1">
+        <div class="card w-85 mb-3 mt-2">
+
+          <mat-select name="Restaurant" formControlName="Restaurant" #res>
+            <mat-option disabled value="placeholder">Select Restaurant</mat-option>
+            <mat-option *ngFor="let restaurant of city.restaurantList ,let i = index" [value]="restaurant">
+              {{restaurant.resName}}
+            </mat-option>
+          </mat-select>
+          <div style="display: flex;" class="mt-3" *ngIf="res.value">
+            <img [src]="res.value.image" style="width: 110px;height: 105px;" alt="...">
+            <div class="d-flex flex-column ms-3 mb-1">
+              <div class="ms-2 mt-2">
+                <h3>{{res.value.resName |titlecase}}</h3>
+              </div>
+              <div class="ms-2 mt-2">
+                <button class="btn btn-info" (click)="deleteRestaurantByName(city.city, res.value.resName)">
+                  <i class="fas fa-trash ms-2 me-2 btn"></i>
+                </button>
+                <button class="btn btn-secondary ms-2 me-2" (click)="navigatemenu(city.city, res.value.resName)"><i
+                    class="fa-solid fa-plus"></i> Menu</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td [colSpan]="1">
+        <div class="card mb-3 mt-2" style="border: 2px solid #333;" *ngIf="res.value">
+
+          <div class=" my-2 mx-2" style="font-weight: bolder;">{{res.value.resName |titlecase}}</div>
+          <hr>
+          <label>Select Menu</label>
+          <mat-select name="Restaurant" formControlName="Restaurant" #menu width="50px">
+            <mat-option disabled value="placeholder">Select Menu</mat-option>
+            <mat-option *ngFor="let menus of res.value.menu ,let i = index" [value]="menus">
+              {{menus.itemName}}
+            </mat-option>
+          </mat-select>
+          <div class="d-flex my-1 mx-1" *ngIf="menu.value">
+            <img [src]="menu.value.image" style="width: 110px;height: 105px; margin-left: 10px;" alt="...">
+            <div class="d-flex flex-column ms-3 mb-1">
+              <h3>{{menu.value.menuId}}<span class="mx-2" style="border:2px solid lightgray;border-radius: 2px;"></span>
+                {{menu.value.itemName |titlecase}}</h3>
+              <div>
+                <button class="btn btn-info my-1"
+                  (click)="deletemenuByName(city.city, res.value.resName,menu.value.itemName)">
+                  <i class="fas fa-trash ms-1 me-1 btn"></i>
+                </button>
+              </div>
+              <hr>
+            </div>
+          </div>
+
+        </div>
+      </td>
+      <td>
+        <div class="d-flex flex-column ">
+          <!-- <button (click)="updateProduct(city.city)" class="btn btn-primary m-2"
+            style="margin-left: 10px;">Update</button> -->
+          <button class="btn btn-danger m-2" (click)="deleteProduct(city.city)"
+            style="margin-left: 10px;">Delete</button>
+        </div>
+      </td>
+
+    </tr>
+
+
+
+  </tbody>
+
+</table>

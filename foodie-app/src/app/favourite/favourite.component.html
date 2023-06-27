@@ -1,0 +1,58 @@
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div class="container mt-5">
+    <h1 id="heading">Favourite Resturants</h1>
+    
+    <div class="row">
+      <h2 *ngIf="!restaurantdata || restaurantdata.length ==0" class="text-center">No restaurant has been added to favourites </h2>
+        <div class="col" *ngFor="let a of restaurantdata ">
+            <div class="card " >
+                <img src="{{a.image}}" (click)="goToMenu(a)" alt="Image 1" class="card-image" (click)="goToMenu(a)"  style="height: 10rem;">
+                <h3 class="card-title">{{a.resName | titlecase }} </h3>
+                
+                  <button class="btn" (click)="deleteres(a.resName)">
+                    <mat-icon  color="warn">delete</mat-icon>
+                  </button>
+                
+            </div>
+
+        </div>
+    </div>
+
+  </div>
+  <div class="container mt-5">
+  <h1 id="heading">Favourite Menu</h1>
+  <h2 *ngIf="!menudata || menudata.length ==0" class="text-center">No Menu has been added to favourites </h2>
+  <div class="card-container">
+    
+    <div class="card" *ngFor="let a of menudata;">
+      <img class="card-image" src="{{a.image}}" alt=""  style="height: 10rem;">
+      <div class="card-content">
+        <div class="card-title-row">
+          <div class="card-title-row" style="display: flex;">
+            <h5 class="card-title">{{a.itemName}}</h5>
+            <span class="card-rating">{{a.rating}}★</span>
+          </div>
+        </div>
+        <h3 class="card-resName">{{a.resName}}</h3>
+        <div class="card-details">
+          <p>
+            <span *ngIf="a.category == 'veg'">
+              <img src="https://n3.sdlcdn.com/imgs/d/g/8/Veg_symbol_svg-f30b6.png" alt="" class="category-icon">
+            </span>
+            <span *ngIf="a.category == 'Non-veg'">
+              <img src="https://packagingguruji.com/wp-content/uploads/2022/09/New-Non-Logo.png" alt="" class="category-icon">
+            </span>
+            <span class="card-category">{{a.category}}</span>
+          </p>
+          <p class="card-price">&#8377;{{a.price}}</p>
+        </div>
+      </div>
+      <button class="btn" (click)="deletemenu(a.resName)">
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
